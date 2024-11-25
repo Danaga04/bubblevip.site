@@ -92,7 +92,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat en Vivo</title>
     <style>
-        /* Remove margens e paddings padrões do body */
+        /* Estilo básico */
         body {
             margin: 0;
             padding: 0;
@@ -105,7 +105,7 @@
             justify-content: space-between;
             align-items: center;
             max-width: 600px;
-            margin: 0 auto; /* Centraliza horizontalmente */
+            margin: 0 auto;
             padding: 10px;
         }
 
@@ -149,7 +149,7 @@
             overflow-y: auto;
             height: 400px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            margin: 10px auto; /* Centraliza e mantém margens consistentes */
+            margin: 10px auto;
         }
 
         .message {
@@ -179,41 +179,11 @@
             color: #444;
         }
 
-        .comment-form {
-            display: flex;
-            margin: 20px auto;
-            max-width: 600px;
-            padding: 10px;
-        }
-
-        .comment-input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            outline: none;
-        }
-
-        .comment-button {
-            padding: 10px 20px;
-            border: none;
-            background-color: #cc0000;
-            color: #fff;
-            cursor: pointer;
-            border-radius: 8px;
-            margin-left: 10px;
-            transition: background-color 0.3s;
-        }
-
-        .comment-button:hover {
-            background-color: #b20000;
-        }
-
         .note {
             font-size: 14px;
             color: #888;
             margin-top: 20px;
-            text-align: center; /* Para mensagens centralizadas */
+            text-align: center;
         }
 
         @media (max-width: 768px) {
@@ -223,10 +193,6 @@
 
             .viewer-count {
                 font-size: 18px;
-            }
-
-            .comment-button {
-                padding: 10px 15px;
             }
         }
     </style>
@@ -247,11 +213,20 @@
     <script>
         // URLs de las imágenes personalizadas
         const customAvatars = [
-            // Lista de URLs...
+            'https://imgur.com/oxDJauK.png',
+            'https://imgur.com/m5FRjQG.png',
+            'https://imgur.com/DtpsI9B.png',
+            'https://imgur.com/0wftB69.png',
+            'https://imgur.com/WLFVB5U.png'
         ];
 
+        // Lista de comentarios
         const comments = [
-            // Lista de comentarios...
+            { username: 'Andrés Ramírez', text: '¡Esto está cambiando mi vida!', avatar: customAvatars[0] },
+            { username: 'Pablo Ferrer', text: '¡Es increíble!', avatar: customAvatars[1] },
+            { username: 'Jorge Herrera', text: 'Esto me abrió los ojos.', avatar: customAvatars[2] },
+            { username: 'Cristian Vargas', text: '¡Gracias por compartir!', avatar: customAvatars[3] },
+            { username: 'Luis Cabrera', text: 'Nunca vi algo así.', avatar: customAvatars[4] }
         ];
 
         const chatContainer = document.getElementById('chatContainer');
@@ -272,6 +247,9 @@
             messageElement.appendChild(avatarElement);
             messageElement.appendChild(textElement);
             chatContainer.appendChild(messageElement);
+
+            // Faz o scroll para o último comentário
+            chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
         function updateViewerCount() {
@@ -287,8 +265,8 @@
             currentCommentIndex = (currentCommentIndex + 1) % comments.length;
         }
 
-        setInterval(simulateChat, 3000);
-        setInterval(updateViewerCount, 1000);
+        setInterval(simulateChat, 3000); // Adiciona comentário a cada 3 segundos
+        setInterval(updateViewerCount, 1000); // Atualiza o contador de espectadores a cada 1 segundo
     </script>
 </body>
 </html>
